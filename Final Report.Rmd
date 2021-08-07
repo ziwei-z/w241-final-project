@@ -1,0 +1,96 @@
+---
+title: "Does Clickbait Lead to More Clicks?"
+author: "Hsuanyi Cheng, Patrick Kim, Kayla Wopschall, Ziwei Zhao"
+date: "8/12/2021"
+output:
+  pdf_document: default
+  html_document: default
+  word_document: default
+header-includes: 
+- \usepackage{float}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Introduction
+
+## Background
+
+## Research Question
+
+## Hypothesis
+ 
+
+# Facebook Ads Experiment
+
+## Design
+
+We chose Facebook advertising as our preferred platform for the experiment for several reasons. First, it is one of the most widely used social media platforms, which would allow flexibility in choosing the sample population and ensure that we have enough subjects in the experiment given our limited budget. Secondly, Facebook has an intuitive A/B testing feature that allows us to easily design ad campaigns with a control ad and a treatment ad that never get shown to the same Facebook user. 
+
+We conducted two pilot experiments. In each experiment, we use one existing news article and design two ads for it, each with a headline and an image. For the ad that gets shown to the control group, both the headline and image are rather neutral. They state facts without a call to action or question for the reader, and the image should not elicit strong emotional reactions. For the ad shown to the treatment group, both the headline and image are "clickbait" - the headline contains a question that entices the reader to click on the article to find the answer, and the image portray more dynamic action that might draw attention. 
+
+Figure 1 shows the two ads used for the first pilot experiment. It uses the same NPR article about traveling overseas during the pandemic. The control group sees the headline "Traveling overseas - everything you need to know" with an image of a woman hiking in an idyllic nature scene. The treatment group sees the headline "Traveling overseas? It might not be worth it" with an image of travelers getting their temperatures checked in an airport security line. 
+
+```{r, echo=FALSE, fig.cap="Facebook experiment example ads 1", out.width = '50%', fig.align = "center", fig.pos = "H"}
+knitr::include_graphics("images/fb_travel.PNG")
+```
+
+
+## Analysis
+
+```{r, message=FALSE, warning=FALSE, include = FALSE}
+library(data.table)
+library(sandwich)
+library(lmtest)
+library(stargazer)
+library(ggplot2) 
+
+robust_se <- function(mod, type = 'HC3') { 
+  sqrt(diag(vcovHC(mod, type)))
+  }
+```
+
+```{r load data, include = FALSE}
+d <- fread('data/fb_data_detail.csv')
+d[ , treated := adsetname == 'Treatment']
+d[ , female := gender=='female']
+d[ , mean(click), by = treated]
+```
+
+these are results xxxxxx
+
+```{r simple model, results='asis', echo=FALSE}
+model1 <- d[ , lm(click ~ treated)]
+stargazer(model1 ,
+          type = 'latex',
+          se = list(robust_se(model1)),
+          header = FALSE
+          )
+```
+
+## Findings 
+
+conclusions from the fb experiment
+
+# Survey Experiment 
+
+intro to why we needed to do this
+
+## Design
+
+describe 4x4 = 16 design, maybe show an example survey?
+
+## Analysis 
+
+analyze survey results 
+
+### Within test
+
+### Between test
+
+# Conclusions 
+
+Overall conclusions 
+
