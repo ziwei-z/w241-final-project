@@ -74,26 +74,86 @@ stargazer(model1 ,
 
 conclusions from the fb experiment
 
+\newpage
+
 # Survey Experiment 
 
-Because we spent so much time trying to do the Facebook experiment, we unfortunately had to redesign, deploy, and analyze a new experiment shortly before the deadline. We chose to utilize SurveyMonkey because their platform allows for surveying users cheaply and efficiently with little danger of being locked out of the platform. The respondent is shown two image ads and asked to indicate which ad they would be more likely to click on.
+Because we spent so much time trying to do the Facebook experiment, we unfortunately had to redesign, deploy, and analyze a new experiment shortly before the deadline. We chose to utilize SurveyMonkey because their platform allows for surveying users cheaply and efficiently with little danger of being locked out of the platform. The respondent is shown two image ads and asked to indicate which ad they would be more likely to click on. The survey targeted 400 respondents from across the United States using the broadest demographic available on SurveyMonkey. The full dataset contains 437 responses as SurveyMonkey provided these extra responses for free.
 
 ## Design
 
 SurveyMonkey contains an A/B testing feature that allows for different text and images to be shown to respondents at random. We utilize this feature to show two different images to the respondent and create many sampling pairs. First, two ads with tame language and normal stock images were created by the team. For each ad, one version is created with extreme language in the title, another version with a shocking image, and a final version with both modified at once. This means that there are four versions of each article, and each version has a 25% chance of being displayed to the respondent according to SurveyMonkey's randomization procedure. 
 
-#### For each article
+#### For each ad:
 
 1. Control
 2. Text Treatment
 3. Image Treatment
 4. Both
 
-Since there are two articles, this creates 16 sample pairings to analyze.
+Since there are two ads and four possible versions of each ad, this creates 16 possible pairings, meaning that each pairing has a 1 in 16 chance of appearing in a respondent's survey.
 
 ## Analysis 
 
-analyze survey results 
+``` {r survey analysis, results = 'asis', message = FALSE, warning = FALSE, error = FALSE, echo = FALSE}
+library(dplyr)
+library(ggplot2)
+library(tidyr)
+library(sandwich)
+library(stargazer)
+library(lmtest)
+
+d <- read.csv(file = 'data/News Pulse.csv')
+d <- as.data.frame(d)
+
+#Data cleaning
+d <- d[-1,]
+df <- d %>% select(c("Respondent.ID", "What.type.of.news.are.you.most.interested.in.", 
+                    "Article.1", "Article.2", "Which.article.would.you.be.more.likely.to.click.on.",
+                    "How.interested.are.you.in.the.news.on.a.scale.of.1.to.10.", "Gender",
+                    "Household.Income", "Device.Type", "Region", "Age"))
+colnames(df) <- c("id", "news_interest", "article1", "article2", "article_pref", 
+                 "news_interest_score", "gender", "household_income", "device_type", 
+                 "region", "age")
+
+#Replaces article column values with something more manageable
+#Change article preference to a binary variable
+article_helper <- function(line) {
+  if(line == "Text Treatment") {"T"}
+  else if(line == "Image Treatment") {"I"}
+  else if(line == "Text and Image Treatment") {"B"}
+  else {"C"}
+}
+
+
+df <- df %>% mutate(article1 = sapply(article1, article_helper, USE.NAMES=FALSE),
+                  article2 = sapply(article2, article_helper, USE.NAMES=FALSE),
+                  article_pref = ifelse(article_pref == "Article 1", 0, 1))
+
+#Helper function for prop testing
+prop_test_helper <- function(group, data = df) {
+  filtered_data <- data %>% filter(article1 == group & article2 == group)
+  prop.test(sum(filtered_data$article_pref), length(filtered_data$article_pref))
+}
+
+#Test of proportions for each treatment group pair
+prop_test_p_values <- c()
+for (g in c("C", "I", "T", "B")) {
+  prop_test_p_values[g] <- prop_test_helper(g)$p.value
+}
+
+```
+
+Respondents only ever see one version of each ad, which means that the potential outcomes of a respondent observing a treated ad and a control ad are never observed. To overcome this problem, a test of proportions is used as a basic check to determine whether the difference in ads has a significant effect on respondent choices. For each treatment type, we compare the number of times that ad version was selected by the respondents between both ads, and the p-values obtained are outlined below.
+
+#### Test of Proportion P-values:
+
+* Control group: `r prop_test_p_values["C"]`
+* Text treatment group: `r prop_test_p_values["T"]`
+* Image treatment group: `r prop_test_p_values["I"]`
+* Both treatment group: `r prop_test_p_values["B"]`
+
+Evidence of a difference in outcomes based on the ad is weak according to our dataset.
 
 ### Within test
 
