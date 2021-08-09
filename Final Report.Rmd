@@ -76,11 +76,20 @@ conclusions from the fb experiment
 
 # Survey Experiment 
 
-intro to why we needed to do this
+Because we spent so much time trying to do the Facebook experiment, we unfortunately had to redesign, deploy, and analyze a new experiment shortly before the deadline. We chose to utilize SurveyMonkey because their platform allows for surveying users cheaply and efficiently with little danger of being locked out of the platform. The respondent is shown two image ads and asked to indicate which ad they would be more likely to click on.
 
 ## Design
 
-describe 4x4 = 16 design, maybe show an example survey?
+SurveyMonkey contains an A/B testing feature that allows for different text and images to be shown to respondents at random. We utilize this feature to show two different images to the respondent and create many sampling pairs. First, two ads with tame language and normal stock images were created by the team. For each ad, one version is created with extreme language in the title, another version with a shocking image, and a final version with both modified at once. This means that there are four versions of each article, and each version has a 25% chance of being displayed to the respondent according to SurveyMonkey's randomization procedure. 
+
+#### For each article
+
+1. Control
+2. Text Treatment
+3. Image Treatment
+4. Both
+
+Since there are two articles, this creates 16 sample pairings to analyze.
 
 ## Analysis 
 
