@@ -33,9 +33,17 @@ We conducted two pilot experiments. In each experiment, we use one existing news
 
 Figure 1 shows the two ads used for the first pilot experiment. It uses the same NPR article about traveling overseas during the pandemic. The control group sees the headline "Traveling overseas - everything you need to know" with an image of a woman hiking in an idyllic nature scene. The treatment group sees the headline "Traveling overseas? It might not be worth it" with an image of travelers getting their temperatures checked in an airport security line. 
 
-```{r, echo=FALSE, fig.cap="Facebook experiment example ads 1", out.width = '50%', fig.align = "center", fig.pos = "H"}
+```{r, echo=FALSE, fig.cap="Facebook pilot experiment 1", out.width = '50%', fig.align = "center", fig.pos = "H"}
 knitr::include_graphics("images/fb_travel.PNG")
 ```
+
+Figure 2 shows the two ads used for the second pilot experiment. It uses an New York Times article about the drought on the West Coast.
+
+```{r, echo=FALSE, fig.cap="Facebook pilot experiment 2", out.width = '50%', fig.align = "center", fig.pos = "H"}
+knitr::include_graphics("images/fb_drought.PNG")
+```
+
+Each experiment got to run for about two days. Because the business page from which we created ads is brand new, and we did not have much, if any, previously advertising records on Facebook, our respective advertising accounts got disabled by Facebook. It was eye opening to see efforts being made by social media platforms to limit "fake news", even though it was a big roadblock for our experiment. However, we were able to extract data from these pilot studies and see some meaningful results.
 
 
 ## Analysis
@@ -155,9 +163,9 @@ Respondents only ever see one version of each ad, which means that the potential
 
 Evidence of a difference in outcomes based on the ad is weak according to our dataset.
 
-### Within test
+## Within test
 
-### Between test
+## Between test
 
 # Conclusions 
 
