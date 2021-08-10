@@ -4,8 +4,6 @@ author: "Hsuanyi Cheng, Patrick Kim, Kayla Wopschall, Ziwei Zhao"
 date: "8/12/2021"
 output:
   pdf_document: default
-  html_document: default
-  word_document: default
 header-includes: 
 - \usepackage{float}
 ---
@@ -33,13 +31,13 @@ We conducted two pilot experiments. In each experiment, we use one existing news
 
 Figure 1 shows the two ads used for the first pilot experiment. It uses the same NPR article about traveling overseas during the pandemic. The control group sees the headline "Traveling overseas - everything you need to know" with an image of a woman hiking in an idyllic nature scene. The treatment group sees the headline "Traveling overseas? It might not be worth it" with an image of travelers getting their temperatures checked in an airport security line. 
 
-```{r, echo=FALSE, fig.cap="Facebook pilot experiment 1", out.width = '50%', fig.align = "center", fig.pos = "H"}
+```{r, echo=FALSE, fig.cap="Facebook Pilot Experiment 1", out.width = '50%', fig.align = "center", fig.pos = "H"}
 knitr::include_graphics("images/fb_travel.PNG")
 ```
 
 Figure 2 shows the two ads used for the second pilot experiment. It uses an New York Times article about the drought on the West Coast.
 
-```{r, echo=FALSE, fig.cap="Facebook pilot experiment 2", out.width = '50%', fig.align = "center", fig.pos = "H"}
+```{r, echo=FALSE, fig.cap="Facebook Pilot Experiment 2", out.width = '50%', fig.align = "center", fig.pos = "H"}
 knitr::include_graphics("images/fb_drought.PNG")
 ```
 
@@ -76,6 +74,7 @@ stargazer(model1 ,
           se = list(robust_se(model1)),
           header = FALSE
           )
+cat('\\newpage') #For some reason, the stargazer model leaks to the next page without this fix
 ```
 
 ## Findings 
@@ -83,6 +82,7 @@ stargazer(model1 ,
 conclusions from the fb experiment
 
 \newpage
+
 
 # Survey Experiment 
 
@@ -99,7 +99,22 @@ SurveyMonkey contains an A/B testing feature that allows for different text and 
 3. Image Treatment
 4. Both
 
+
+```{r, echo=FALSE, fig.cap="Article 1", out.width = '75%', fig.align = "center", fig.pos = "H"}
+knitr::include_graphics("images/article_1.png")
+```
+
+
+```{r, echo=FALSE, fig.cap="Article 2", out.width = '75%', fig.align = "center", fig.pos = "H"}
+knitr::include_graphics("images/article_2.png")
+```
+
 Since there are two ads and four possible versions of each ad, this creates 16 possible pairings, meaning that each pairing has a 1 in 16 chance of appearing in a respondent's survey.
+
+
+```{r, echo=FALSE, fig.cap="Survey Sample", out.width = '75%', fig.align = "center", fig.pos = "H"}
+knitr::include_graphics("images/survey_sample.png")
+```
 
 ## Analysis 
 
