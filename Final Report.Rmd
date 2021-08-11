@@ -35,7 +35,7 @@ Figure 1 shows the two ads used for the first pilot experiment. It uses the same
 knitr::include_graphics("images/fb_travel.PNG")
 ```
 
-Figure 2 shows the two ads used for the second pilot experiment. It uses an New York Times article about the drought on the West Coast.
+Figure 2 shows the two ads used for the second pilot experiment. It uses an New York Times article about the drought on the West Coast. The control group sees the headline "What to understand about the drought in the west" with an image of a red fiery sky. The treatment group sees the headline "Will you run out of water?" with a farmer walking on barren land in front of a few cows.
 
 ```{r, echo=FALSE, fig.cap="Facebook Pilot Experiment 2", out.width = '50%', fig.align = "center", fig.pos = "H"}
 knitr::include_graphics("images/fb_drought.PNG")
@@ -45,6 +45,10 @@ Each experiment got to run for about two days. Because the business page from wh
 
 
 ## Analysis
+
+### Regression Model 
+
+The first regression analysis is linear regression model of the variable click on the variable treated - both indicator variables. Click indicates whether a Facebook user clicked through to the article after seeing the ad, and treated indicates if a user is in the treatment group. Table 1 shows the results. The first column shows the results from the first pilot study using the travel ads. The coefficient on treated is 0.122 with a 0.00 p-value, meaning that people in the treatment group are 12.2% more likely to click on the ad. The second column shows results from the second pilot study using the drought ads. The coefficient on treated is 0.020 with a p-value of 0.0691. People in the treatment group are 2.0% more likely to click on the ad, but it is only only statistically significant at the 10% level, compared to the 1% level in the first pilot study. 
 
 ```{r, message=FALSE, warning=FALSE, include = FALSE}
 library(data.table)
@@ -59,27 +63,67 @@ robust_se <- function(mod, type = 'HC3') {
 ```
 
 ```{r load data, include = FALSE}
-d <- fread('data/fb_data_detail.csv')
-d[ , treated := adsetname == 'Treatment']
-d[ , female := gender=='female']
-d[ , mean(click), by = treated]
-```
+d_fb <- fread('data/fb_data_detail.csv')
+d_fb[ , treated := adsetname == 'Treatment']
+d_fb[ , female := gender=='female']
+d_fb[ , mean(click), by = treated]
 
-these are results xxxxxx
+d2 <- fread('data/fb_data_detail_2.csv')
+d2[ , treated := adsetname == 'Treatment']
+d2[ , female := gender=='female']
+d2[ , mean(click), by = treated]
+```
 
 ```{r simple model, results='asis', echo=FALSE}
-model1 <- d[ , lm(click ~ treated)]
-stargazer(model1 ,
+model1 <- d_fb[ , lm(click ~ treated)]
+model2 <- d2[ , lm(click ~ treated)]
+stargazer(model1 , model2, 
           type = 'latex',
-          se = list(robust_se(model1)),
-          header = FALSE
+          se = list(robust_se(model1), robust_se(model2)),
+          header = FALSE,
+          title = 'Facebook experiment - click regressed on treated',
+          column.labels = c('travel ads', 'drought ads')
           )
 cat('\\newpage') #For some reason, the stargazer model leaks to the next page without this fix
+
+```
+### Covariate Check 
+
+Since Facebook's algorithms randomized our populations for the experiments and their business goals are presumed to be focused on revenue from advertisers, we conducted covariate checks to ensure that randomization was done properly. We conducted a regression of treated on female to see if gender predicted which group a user would fall in. The female coefficient is not statisticaly significant in the travel ads experiment, but it is significant at the 10% level in the drought ads experiment.
+
+```{r fb test covariates gender, echo = FALSE, message = FALSE, warning = FALSE, results = 'asis', fig.pos = "H"}
+test_gender <- d_fb[ , lm(treated ~ female)]
+test_gender2 <- d2[ , lm(treated ~ female)]
+
+stargazer(test_gender, test_gender2,
+          type = 'latex',
+          se = list(robust_se(test_gender),
+                    robust_se(test_gender2)),
+          title = 'Facebook experiment - covariate check - gender',
+          column.labels = c('travel ads', 'drought ads'),
+          header = FALSE
+          )
+
 ```
 
-## Findings 
+We ran a similar regression of treated on age. Age was provided from facebook in buckets: 18-24, 25-34, 35-44, 45-54, 55-64 and 65+. The regression results effectively compare each age group to the 18-24 group. For both the travel ads experiment and the drought ads experiment, all coefficients on age groups are positive. None of the coefficients are statistically significant in the travel ads experiment, but they are all statistically significant at different levels for the drought experiment. Without other covariates or a deeper understanding of Facebook's algorithm, it is difficult for us to tell why these the drought experiment's randomization may not have been done properly.
 
-conclusions from the fb experiment
+```{r fb test covariates age, echo = FALSE, message = FALSE, warning = FALSE, results = 'asis', fig.pos = "H"}
+test_age <- d_fb[ , lm(treated ~ as.factor(age))]
+test_age2 <- d2[ , lm(treated ~ as.factor(age))]
+
+stargazer(test_age, test_age2,
+          type = 'latex',
+          se = list(robust_se(test_age),
+                    robust_se(test_age2)),
+          title = 'Facebook experiment - covariate check - age',
+          column.labels = c('travel ads', 'drought ads'),
+          header = FALSE
+          )
+
+cat('\\newpage')
+```
+
 
 \newpage
 
