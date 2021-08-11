@@ -4,21 +4,31 @@ author: "Hsuanyi Cheng, Patrick Kim, Kayla Wopschall, Ziwei Zhao"
 date: "8/12/2021"
 output:
   pdf_document: default
+fontsize: 11.5pt
 header-includes: 
 - \usepackage{float}
 ---
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+# Abstract 
+
+We study the effect on click-through rates of applying textual and stylistic image often related to clickbait to headlines of newspaper articles which can be bought in a digital environment. Publishing a dataset consisting of original headline, rewritten headline and re-applying image in social media and survey platform, we can directly measure whether these “clickbait features” do what they are believed to do: entice readers to click on them. The main findings are as follows. First, the data shows that image or both text and image click-bait features lead to a statistically significant increase in the number of clicks. Second, re-write headline-only articles shows no statistically significant increase in the number of clicks. The findings are concluded by two different experiments through various platforms.
+
 # Introduction
 
-## Background
+The way people consume newspaper articles is changing: more and more newspaper articles are consumed on the internet rather than from physical newspapers. People used to buy a newspaper, read it from cover to cover while scanning headlines, and reading articles that they thought were interesting (Holmqvist et al. 2003). However, increasingly more people are reading individual articles online, outside of their original publication. Often, a person reads this article because it was shared on social media or some other internet platform. According to Journalism portal, in a 2017 survey, they found  two-thirds of readers utilized social media to get fresh news. 
 
-## Research Question
+With this change, the function of the headline of a news article changed as well. Previously, the primary function of a headline and image were to give the reader, who was scanning the newspaper, a clear understanding of what the article was about. But in social media the headline and image become primary ways to attract the reader's attention and make the reader curious as to what the article is about, so that it lures the reader to open the article. Thus we started to wonder if attractive headlines and images, often called click-bait, did draw more attention than regular newspaper headlines.
 
-## Hypothesis
+Clickbait is a commonly explored device, with varied results (Mini, 2021). While clickbait, strictly defined, is the crafting of sensational headlines and images that lead to misleading content, we want to test the impact of the clickbait strategies within various other contexts(e.g. news, politics, popular science). As content developers, you’re constantly trying to drive engagement with readers, and structuring your meta content (headlines, subheadings, and images) on social media platforms should influence active engagement with your content, and the types of individuals you engage with. 
+
+In the experiment, we design the control group to view a headline that is factual, unemotional with a similarly neutral but relevant image. Often captured in the newspaper's original writing. The treatment group will be a more emotional headline and/or image that is designed to trigger someone to click through due to curiosity, anxiety, or any other feelings pushed forward by the headline. Both groups would arrive at the same article if they click through on the ad. The mechanisms we’re trying to test here are people’s interest is piqued more by one type of image and/or rhetoric over another, enough to engage with the content (clicks, likes, comments). Through our various treatment groups we attempt to see the effects of images, headlines, and the combination of the two. 
+
+We initially utilized Facebook ads platform to execute an A/B test, in which control and treatment image and headline will render to different users separately. In just a few days, we successfully collected more than thousand data points to analyze the click bait effects. Unfortunately, Facebook ads algorithms detected our experiments and considered it against their policy. Even though we tried to explain and provided personal identification to prove legit execution. In the end, we decided to run a survey via Survey Monkey to continue the same experiment with a different design approach. In the second stage of the experiment, we send out the survey displaying both control and treatment with different articles to avoid obvious click-bait tests. In both experiments, we are able to archive randomized and unbiased results by the platform setting. 
  
 
 # Facebook Ads Experiment
@@ -144,19 +154,19 @@ SurveyMonkey contains an A/B testing feature that allows for different text and 
 4. Both
 
 
-```{r, echo=FALSE, fig.cap="Article 1", out.width = '75%', fig.align = "center", fig.pos = "H"}
+```{r, echo=FALSE, fig.cap="Article 1", out.width = '85%', fig.align = "center", fig.pos = "H"}
 knitr::include_graphics("images/article_1.png")
 ```
 
 
-```{r, echo=FALSE, fig.cap="Article 2", out.width = '75%', fig.align = "center", fig.pos = "H"}
+```{r, echo=FALSE, fig.cap="Article 2", out.width = '85%', fig.align = "center", fig.pos = "H"}
 knitr::include_graphics("images/article_2.png")
 ```
 
 Since there are two ads and four possible versions of each ad, this creates 16 possible pairings, meaning that each pairing has a 1 in 16 chance of appearing in a respondent's survey.
 
 
-```{r, echo=FALSE, fig.cap="Survey Sample", out.width = '75%', fig.align = "center", fig.pos = "H"}
+```{r, echo=FALSE, fig.cap="Survey Sample", out.width = '85%', fig.align = "center", fig.pos = "H"}
 knitr::include_graphics("images/survey_sample.png")
 ```
 
@@ -228,5 +238,11 @@ Evidence of a difference in outcomes based on the ad is weak according to our da
 
 # Conclusions 
 
-Overall conclusions 
+In the Facebook ads platform experiment, the results suggest that with ‘clickbait’ images and text get significantly more clicks. In the survey results, we analyzed as “within subjects” and “between subjects”. In the Within subjects analysis, it suggests that both Image and text modifications have a positive ATE, and lead to the most preferences for ‘clickbait’ type articles. Image and Text modifications both have significant positive ATE’s, with Text being slightly more impactful than image.
+
+In the Between subjects analysis, it suggests that when Article 1 is Control, there is a positive significant ATE from Image Treatment and a negative significant ATE from Both treatments combined. But when Article 2 is controlled, there is no significant ATE from Article 1 Treatments.
+
+Overall, we believe that sensational headlines and images did attract people’s attention and the image has a more dramatic effect than the text. Our experiment's result can only reveal partial evidence due to unexpected platform difficulties. To extend this experiment and analysis, we could navigate different platforms and various content types.
+
+
 
