@@ -20,6 +20,7 @@ We study the effect on click-through rates of applying textual and stylistic ima
 
 # Introduction
 
+## Still needs editing
 The way people consume newspaper articles is changing: more and more newspaper articles are consumed on the internet rather than from physical newspapers. People used to buy a newspaper, read it from cover to cover while scanning headlines, and reading articles that they thought were interesting (Holmqvist et al. 2003). However, increasingly more people are reading individual articles online, outside of their original publication. Often, a person reads this article because it was shared on social media or some other internet platform. According to Journalism portal, in a 2017 survey, they found  two-thirds of readers utilized social media to get fresh news. 
 
 With this change, the function of the headline of a news article changed as well. Previously, the primary function of a headline and image were to give the reader, who was scanning the newspaper, a clear understanding of what the article was about. But in social media the headline and image become primary ways to attract the reader's attention and make the reader curious as to what the article is about, so that it lures the reader to open the article. Thus we started to wonder if attractive headlines and images, often called click-bait, did draw more attention than regular newspaper headlines.
@@ -33,7 +34,7 @@ We initially utilized Facebook ads platform to execute an A/B test, in which con
 
 # Facebook Ads Experiment
 
-## Design
+## Experimental Design
 
 We chose Facebook advertising as our preferred platform for the experiment for several reasons. First, it is one of the most widely used social media platforms, which would allow flexibility in choosing the sample population and ensure that we have enough subjects in the experiment given our limited budget. Secondly, Facebook has an intuitive A/B testing feature that allows us to easily design ad campaigns with a control ad and a treatment ad that never get shown to the same Facebook user. 
 
@@ -54,7 +55,7 @@ knitr::include_graphics("images/fb_drought.PNG")
 Each experiment got to run for about two days. Because the business page from which we created ads is brand new, and we did not have much, if any, previously advertising records on Facebook, our respective advertising accounts got disabled by Facebook. It was eye opening to see efforts being made by social media platforms to limit "fake news", even though it was a big roadblock for our experiment. However, we were able to extract data from these pilot studies and see some meaningful results.
 
 
-## Analysis
+## Results
 
 ### Regression Model 
 
@@ -97,7 +98,7 @@ stargazer(model1 , model2,
 cat('\\newpage') #For some reason, the stargazer model leaks to the next page without this fix
 
 ```
-### Covariate Check 
+#### Covariate Check 
 
 Since Facebook's algorithms randomized our populations for the experiments and their business goals are presumed to be focused on revenue from advertisers, we conducted covariate checks to ensure that randomization was done properly. We conducted a regression of treated on female to see if gender predicted which group a user would fall in. The female coefficient is not statisticaly significant in the travel ads experiment, but it is significant at the 10% level in the drought ads experiment.
 
@@ -138,20 +139,19 @@ cat('\\newpage')
 \newpage
 
 
-# Survey Experiment 
+# Survey(Monkey) Experiment 
 
 Because we spent so much time trying to do the Facebook experiment, we unfortunately had to redesign, deploy, and analyze a new experiment shortly before the deadline. We chose to utilize SurveyMonkey because their platform allows for surveying users cheaply and efficiently with little danger of being locked out of the platform. The respondent is shown two image ads and asked to indicate which ad they would be more likely to click on. The survey targeted 400 respondents from across the United States using the broadest demographic available on SurveyMonkey. The full dataset contains 437 responses as SurveyMonkey provided these extra responses for free.
 
-## Design
+## Experimental Design
 
 SurveyMonkey contains an A/B testing feature that allows for different text and images to be shown to respondents at random. We utilize this feature to show two different images to the respondent and create many sampling pairs. First, two ads with tame language and normal stock images were created by the team. For each ad, one version is created with extreme language in the title, another version with a shocking image, and a final version with both modified at once. This means that there are four versions of each article, and each version has a 25% chance of being displayed to the respondent according to SurveyMonkey's randomization procedure. 
 
-#### For each ad:
+Here it is important to note a critical difference between the survey design and the Facebook Ads experiment. In the Facebook Ads experiment it was an organic ads placement where an individual had the option to click or ignore. We were able to capture the data for those who observed and chose not to click. In our survey design, the survey respondents are forced to give a selection on their preference. This is critical for several reasons: 1) it requires a binary choice which doesn't reflect a normal news engagement environment; 2) it places the preferences of those who are uninterested in both as equal to those who have a strong preference to one, adding noise from individuals that may not have clicked on either in a real world scenario; 3) as a survey the respondent doesn't actually get to engage in the content, where as in Facebook these were sitting over a real article with content - making the entire format of engagement very different.
 
-1. Control
-2. Text Treatment
-3. Image Treatment
-4. Both
+```{r, echo=FALSE, fig.cap="Survey Design", out.width = '85%', fig.align = "center", fig.pos = "H"}
+knitr::include_graphics("images/Survey_Design.PNG")
+```
 
 
 ```{r, echo=FALSE, fig.cap="Article 1", out.width = '85%', fig.align = "center", fig.pos = "H"}
@@ -170,7 +170,9 @@ Since there are two ads and four possible versions of each ad, this creates 16 p
 knitr::include_graphics("images/survey_sample.png")
 ```
 
-## Analysis 
+
+
+## Results 
 
 ``` {r survey analysis, results = 'asis', message = FALSE, warning = FALSE, error = FALSE, echo = FALSE}
 library(dplyr)
@@ -221,23 +223,198 @@ for (g in c("C", "I", "T", "B")) {
 
 ```
 
-Respondents only ever see one version of each ad, which means that the potential outcomes of a respondent observing a treated ad and a control ad are never observed. To overcome this problem, a test of proportions is used as a basic check to determine whether the difference in ads has a significant effect on respondent choices. For each treatment type, we compare the number of times that ad version was selected by the respondents between both ads, and the p-values obtained are outlined below.
+Respondents only ever see one version of each ad, which means that the potential outcomes of a respondent observing a treated ad and a control ad are never observed. To overcome this problem, a test of proportions is used as a basic check to determine whether the difference in ad content or topics has a significant effect on respondent choices. For each treatment type, we compare the number of times that ad version was selected by the respondents between both ads, and the p-values obtained are outlined below.
 
 #### Test of Proportion P-values:
 
-* Control group: `r prop_test_p_values["C"]`
-* Text treatment group: `r prop_test_p_values["T"]`
-* Image treatment group: `r prop_test_p_values["I"]`
-* Both treatment group: `r prop_test_p_values["B"]`
+* Control group - those who saw control images of both articles: `r prop_test_p_values["C"]`
+* Text treatment group - those who saw text treatment of both articles: `r prop_test_p_values["T"]`
+* Image treatment group - those who saw image treatment for both articles: `r prop_test_p_values["I"]`
+* Both treatment group - those who saw both text and image treatment on both articles: `r prop_test_p_values["B"]`
 
-Evidence of a difference in outcomes based on the ad is weak according to our dataset.
+For all groups we see no statistically significant differences in preference for article one versus article two, suggesting content and topic are not driving the outcome. 
 
-## Within test
+#### Test of Article Preference Through Regression Analysis:
 
-## Between test
+Due to small sample sizes, we also ran a regression on a subset of the dataset containing all of the groups outlined above (e.g. those who saw the same type of both articles). Here we have the outcome variable set as preferring article one, and covariates for potential treatment types. We see, even when aggregated, there is no evidence of individuals in the survey preferentially selecting one article over the other when both articles have equal levels of treatment. Therefore, there is no evidence that article content is driving article selection, and we can assume that effects seen are driven by differences in treatment. 
+
+```{r article preference regression, results = 'asis', message = FALSE, warning = FALSE, error = FALSE, echo = FALSE}
+df_3 <- subset(df, (article1 == article2))
+
+df_3$treatment <- df_3$article1
+
+
+library(stargazer)
+model_df3 <- lm(article_pref ~ treatment , data = df_3 )
+#model_df3
+model_df3.Coeftest <- coeftest(model_df3, vcovHC(model_df3))
+#stargazer(model_df3, se=list(sqrt(diag(vcovHC(model_df3)))), type = 'text', header = F)
+
+stargazer(model_df3,
+          type = 'latex',
+          se = list(robust_se(model_df3)),
+          title = 'Survey Monkey experiment - article content preference check',
+          column.labels = c('groups'),
+          header = FALSE
+          )
+```
+
+
+### Treatment Type Impacts at the Individual Level
+
+To test the impact of treatment types at the individual level, we subset the data to remove all individuals that saw identical treatment levels (e.g. control article one and control article two; treatment both article one and two, etc). This left us with individuals that all have one control article, and see one type of treatment article, then make the choice between the two for their preference. 
+
+When running the regression, we then have a dummy variable that notes whether article one is control or treatment, and variables for the types of treatments that were seen (Image, Text, or Both). Our outcome variable is whether the treatment article was selected or not. 
+
+```{r, echo=FALSE, fig.cap="Individual Treatement Design", out.width = '85%', fig.align = "center", fig.pos = "H"}
+knitr::include_graphics("images/individual_design.PNG")
+```
+
+#### Regression Analyses and Results
+
+
+
+```{r survey regression, results = 'asis', message = FALSE, warning = FALSE, error = FALSE, echo = FALSE}
+#Duplicating dataframe df to build off of - filtering down to remove like:like pairs
+#Removes data without a Control
+
+df$control_present <- ifelse(df$article1 == 'C', 1, ifelse(df$article2== 'C', 1, 0))
+df2 <- subset(df, article1 != article2 & control_present == 1)
+
+##Coding variable that shows if Article 1 is control
+df2$article1_control <- ifelse(df2$article1== 'C', 1, 0)
+
+##Add variable that has the outcome as 1 picked treatment 0 picked control
+df2$outcome <- ifelse(df2$article_pref == 1 & df2$article1 == 'C', 0, ifelse(df2$article_pref == 0 & df2$article2 == 'C', 0, 1))
+
+##Add column with treatment type 
+df2$treatment_type <- ifelse(df2$article1 == 'C', df2$article2, df2$article1)
+
+model_df2 <- lm(outcome ~ article1_control + treatment_type , data = df2 )
+#model_df2
+model_df2.Coeftest <- coeftest(model_df2, vcovHC(model_df2))
+#stargazer(model_df2, se=list(sqrt(diag(vcovHC(model_df2)))), type = 'text', header = F)
+
+stargazer(model_df2,
+          type = 'latex',
+          se = list(robust_se(model_df2)),
+          title = 'Survey Monkey experiment - regression of covariates',
+          header = FALSE
+          )
+```
+
+From these results we see that when Article One is the control, respondents that are shown an image with "Both" image and text are 67% more likely to select the treatment article over the control article. When the treatment variable is just image, the percentages decrease by 31%, suggesting that when looking at Article One control and Article Two with a treatment image they are 36% more likely to select the treatment article. If the treatment applied is "Text", the overall likelihood of selecting the treatment article is 45%. When article two is made the control, all of these percentages decrease by 4.3%.
+
+Overall, this suggests significant impacts of all types of treatments. The largest treatment impact belonging to the cases where both image and text are changed, followed by text being the second most impactful, and images being the third most impactful.
+
+## Treatment Type Impacts at the Group Level
+
+While it appears that these variables correlate on an individual level with article selection, our next question was focused around if we see any statistical significance when compared to a control group. To answer this question we ran four different models with the following comparisons as control and treatment:
+
+```{r, echo=FALSE, fig.cap="Control and Treatment Groups", out.width = '85%', fig.align = "center", fig.pos = "H"}
+knitr::include_graphics("images/control_treatment_groups.PNG")
+```
+
+The treatment group that includes "ANY" treatment is an aggregation of the prior three models/groups. This was run twice for article one and two - where each article is independently run for being the control.
+
+
+#### Article One as Control
+
+Keeping article one as control we see an average treatment effect of the following for each comparison:
+
+```{r, echo=FALSE, fig.cap="Article One as Control: Summary Statistics", out.width = '85%', fig.align = "center", fig.pos = "H"}
+knitr::include_graphics("images/article1_control_summary.PNG")
+```
+
+When regressing for these variables where article one is always the control we see the following results:
+
+```{r article one control regression, results = 'asis', message = FALSE, warning = FALSE, error = FALSE, echo = FALSE}
+
+# article 1 is always control, article 2 is control + treatment
+
+robust_se <- function(mod, type = 'HC3') { 
+  sqrt(diag(vcovHC(mod, type)))
+  }
+
+df3a <- subset(df, article1 == "C" & (article2 == "C" | article2== "B"))
+df3a$treated <- df3a$article2 == "B"
+
+df3b <- subset(df, article1 == "C" & (article2 == "C" | article2== "I"))
+df3b$treated <- df3b$article2 == "I"
+
+df3c <- subset(df, article1 == "C" & (article2 == "C" | article2== "T"))
+df3c$treated <- df3c$article2 == "T"
+
+df3d <- subset(df, article1 == "C")
+df3d$treated <- df3d$article2 != "C"
+  
+model_a1c_a2b <- lm(article_pref ~ treated, data = df3a)
+model_a1c_a2i <- lm(article_pref ~ treated, data = df3b)
+model_a1c_a2t <- lm(article_pref ~ treated, data = df3c)
+model_a1c_a2any <- lm(article_pref ~ treated, data = df3d)
+
+stargazer(model_a1c_a2b, model_a1c_a2i, model_a1c_a2t, model_a1c_a2any,
+          se=list(robust_se(model_a1c_a2b), robust_se(model_a1c_a2i), 
+                  robust_se(model_a1c_a2t), robust_se(model_a1c_a2any)), 
+          type = 'latex', 
+          title = 'Survey Monkey experiment - Group Comparisons',
+          header = F,
+          column.labels = c("Both", "Image", "Text", "Any Treatment"))
+```
+
+With Article One as our control, we can see that there appears to have a significant effect when looking at the Image treatment of .290, and a negative effect when looking at comparisons with "Both" image and text treatment of -.195. However, when looking at our summary statistics and power of these tests we can note that by parsing our data in this manner we are now working with small samples sizes and low power. Interestingly, our one variable that shows a positive significant positive correlation in our regression, the articles with image treatment, is the only group comparison that has a high power associated. 
+
+From these results, we can lend more evidence that there may be some impact related to these treatment effects, however with this particular analyses we suffer a sample size issue to better articulate the nuance of those impacts. 
+
+#### Article Two as Control
+
+Keeping article two as control we see an average treatment effect of the following for each comparison:
+
+```{r, echo=FALSE, fig.cap="Article Two as Control: Summary Statistics", out.width = '85%', fig.align = "center", fig.pos = "H"}
+knitr::include_graphics("images/article2_control_summary.PNG")
+```
+
+When regressing for these variables where article two is always the control we see the following results:
+
+```{r article two control regression, results = 'asis', message = FALSE, warning = FALSE, error = FALSE, echo = FALSE}
+
+# article 2 is always control, article 1 is control + treatment
+
+df$choose_article1 <- df$article_pref == 0
+df4a <- subset(df, article2 == "C" & (article1 == "C" | article1== "B"))
+df4a$treated <- df4a$article1 == "B"
+
+df4b <- subset(df, article2 == "C" & (article1 == "C" | article1== "I"))
+df4b$treated <- df4b$article1 == "I"
+
+df4c <- subset(df, article2 == "C" & (article1 == "C" | article1== "T"))
+df4c$treated <- df4c$article1 == "T"
+
+df4d <- subset(df, article2 == "C")
+df4d$treated <- df4d$article1 != "C"
+
+model_a2c_a1b <- lm(choose_article1 ~ treated, data = df4a)
+model_a2c_a1i <- lm(choose_article1 ~ treated, data = df4b)
+model_a2c_a1t <- lm(choose_article1 ~ treated, data = df4c)
+model_a2c_a1any <- lm(choose_article1 ~ treated, data = df4d)
+
+stargazer(model_a2c_a1b, model_a2c_a1i, model_a2c_a1t, model_a2c_a1any,
+          se=list(robust_se(model_a2c_a1b), robust_se(model_a2c_a1i), 
+                  robust_se(model_a2c_a1t), robust_se(model_a2c_a1any)), 
+          type = 'latex', 
+          title = 'Survey Monkey experiment - Group Comparisons',
+          header = F,
+          column.labels = c("Both", "Image", "Text", "Any Treatment"))
+
+```
+
+With Article Two as our control, we see no statistically significant coefficients with our regressions, however we also see from the summary table that we are suffering from a power issue related to our sample sizes. 
+
+At this time its best to use these group comparisons as evidence of a potential impact, seeing as our one comparison with power shows a signficiant coefficient, however further work to grow our sample size needs to be pursued before anything concrete can be concluded. 
 
 # Conclusions 
 
+## Still needs editing
 In the Facebook ads platform experiment, the results suggest that with ‘clickbait’ images and text get significantly more clicks. In the survey results, we analyzed as “within subjects” and “between subjects”. In the Within subjects analysis, it suggests that both Image and text modifications have a positive ATE, and lead to the most preferences for ‘clickbait’ type articles. Image and Text modifications both have significant positive ATE’s, with Text being slightly more impactful than image.
 
 In the Between subjects analysis, it suggests that when Article 1 is Control, there is a positive significant ATE from Image Treatment and a negative significant ATE from Both treatments combined. But when Article 2 is controlled, there is no significant ATE from Article 1 Treatments.
