@@ -55,7 +55,7 @@ knitr::include_graphics("images/fb_drought.PNG")
 Each experiment got to run for about two days. Because the business page from which we created ads is brand new, and we did not have much, if any, previously advertising records on Facebook, our respective advertising accounts got disabled by Facebook. It was eye opening to see efforts being made by social media platforms to limit "fake news", even though it was a big roadblock for our experiment. However, we were able to extract data from these pilot studies and see some meaningful results.
 
 
-## Results
+## Analysis
 
 ### Regression Model 
 
@@ -98,7 +98,7 @@ stargazer(model1 , model2,
 cat('\\newpage') #For some reason, the stargazer model leaks to the next page without this fix
 
 ```
-#### Covariate Check 
+### Covariate Check 
 
 Since Facebook's algorithms randomized our populations for the experiments and their business goals are presumed to be focused on revenue from advertisers, we conducted covariate checks to ensure that randomization was done properly. We conducted a regression of treated on female to see if gender predicted which group a user would fall in. The female coefficient is not statisticaly significant in the travel ads experiment, but it is significant at the 10% level in the drought ads experiment.
 
@@ -134,6 +134,32 @@ stargazer(test_age, test_age2,
 
 cat('\\newpage')
 ```
+
+
+### Hetereogenous Treatment Effects
+
+We also tested for heterogeneous treatment effects (HTE) among genders and age groups using data from the travel ads experiment. The left column below is the simple model that regressed click on treated, as shown previously. Column 2 shows regression that adds female and an interaction term $female \times treated$. The the result is $click = 0.037 + 0.093treated - 0.009female + 0.043treated \times female$. The coefficients for $female$ and for the interaction term are not statistically significant. 
+
+To test for HTE among age groups, we separated the population into below 45 and 45 or above. The results are shown in the third column below as: $click = 0.000 + 0.107treated + 0.032over45 + 0.018treated\times over45$. The coefficient on $over45$ is statistically significant at the 1% level, while the coefficient on $treated\times over45$ is not statistically significant. This indicates that people older than 45 are at least 3.2% more likely to click on the article. 
+
+```{r fb HTE, echo = FALSE, message = FALSE, warning = FALSE, results = 'asis', fig.pos = "H"}
+d_fb[ , female := gender == 'female']
+d_fb[ , over45 := age %in% c('45-54', '55-64', '65+')]
+
+model_gender <- d_fb[gender != "unknown", lm(click ~ treated + female + treated * female)]
+model_age <- d_fb[ , lm(click ~ treated +  over45 + over45 * treated)]
+
+stargazer(model1 , model_gender,  model_age, 
+          type = 'latex',
+          se = list(robust_se(model1),
+                    robust_se(model_gender),
+                    robust_se(model_age)),
+          title = 'Facebook experiment - hetereogeneous treatment effects',
+          header = FALSE
+)
+```
+
+
 
 
 \newpage
