@@ -16,50 +16,56 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Abstract 
 
-We study the effect on click-through rates of applying textual and stylistic image often related to clickbait to headlines of newspaper articles which can be bought in a digital environment. Publishing a dataset consisting of original headline, rewritten headline and re-applying image in social media and survey platform, we can directly measure whether these “clickbait features” do what they are believed to do: entice readers to click on them. The main findings are as follows. First, the data shows that image or both text and image click-bait features lead to a statistically significant increase in the number of clicks. Second, re-write headline-only articles shows no statistically significant increase in the number of clicks. The findings are concluded by two different experiments through various platforms.
+We study the effect on click-through rates of applying textual and stylistic image often related to clickbait to headlines of newspaper articles which can be bought in a digital environment. Here we compare the impacts of changing headlines and images in both a social media platform, and survey format, to directly measure whether these “clickbait features” do what they're intended to do: entice readers to click on them. When testing articles related to travel during Covid and the drought in the West, our research shows evidence of increased clickthrough rates on the social media platform Facebook when both text and image is altered. The follow up with a survey style approach where we test a travel article and an article about streaming video and movie theater success, suggests there is strong correlation between altering image and text individually, and altering both, in respondents interest in the article (with no apparent effect of article content). However, further work is needed to ensure a sample size large enough to test for a signficant treatment effect. 
+
 
 # Introduction
 
-## Still needs editing
-The way people consume newspaper articles is changing: more and more newspaper articles are consumed on the internet rather than from physical newspapers. People used to buy a newspaper, read it from cover to cover while scanning headlines, and reading articles that they thought were interesting (Holmqvist et al. 2003). However, increasingly more people are reading individual articles online, outside of their original publication. Often, a person reads this article because it was shared on social media or some other internet platform. According to Journalism portal, in a 2017 survey, they found  two-thirds of readers utilized social media to get fresh news. 
+The way people consume newspaper articles is changing with more and more news consumption taking place online and through social media spaces as opposed to the traditional paper format. People used to buy a newspaper, read it from cover to cover while scanning headlines, and reading articles that they thought were interesting (Holmqvist et al. 2003). However, increasingly more people are reading individual articles online, outside of their original publication. Often, a person reads this article because it was shared on social media or some other internet platform. According to Journalism portal, in a 2017 survey, they found  two-thirds of readers utilized social media to get fresh news. 
 
-With this change, the function of the headline of a news article changed as well. Previously, the primary function of a headline and image were to give the reader, who was scanning the newspaper, a clear understanding of what the article was about. But in social media the headline and image become primary ways to attract the reader's attention and make the reader curious as to what the article is about, so that it lures the reader to open the article. Thus we started to wonder if attractive headlines and images, often called click-bait, did draw more attention than regular newspaper headlines.
+With this change, the function of the headline of a news article changed as well. Previously, the primary function of a headline and image were to give the reader, who was scanning the newspaper, a clear understanding of what the article was about. By contrast, in social media the headline and image become primary ways to attract the reader's attention and make the reader curious as to what the article is about, so that it lures the reader to open the article. As a result, marketers and those looking to drive users to various websites have capitalized on changing these text and image components to sensationalize and grab readers attention. This leads to the main question: Can news sources use these same tactics to drive traffic to their articles?
 
 Clickbait is a commonly explored device, with varied results (Mini, 2021). While clickbait, strictly defined, is the crafting of sensational headlines and images that lead to misleading content, we want to test the impact of the clickbait strategies within various other contexts(e.g. news, politics, popular science). As content developers, you’re constantly trying to drive engagement with readers, and structuring your meta content (headlines, subheadings, and images) on social media platforms should influence active engagement with your content, and the types of individuals you engage with. 
 
-In the experiment, we design the control group to view a headline that is factual, unemotional with a similarly neutral but relevant image. Often captured in the newspaper's original writing. The treatment group will be a more emotional headline and/or image that is designed to trigger someone to click through due to curiosity, anxiety, or any other feelings pushed forward by the headline. Both groups would arrive at the same article if they click through on the ad. The mechanisms we’re trying to test here are people’s interest is piqued more by one type of image and/or rhetoric over another, enough to engage with the content (clicks, likes, comments). Through our various treatment groups we attempt to see the effects of images, headlines, and the combination of the two. 
+Here we craft two experiments to address if 1) a clickbait type ad, where both image and text are altered to be more sensationalized, leads to more clicks on a social media platform, and 2) if there are varying levels of impact from changing just text, just image, or both on survey respondents' interest in the articles. For both experiments, control ads contain headlines and images that are unemotional, factual, and generalized to address groups and not individuals. Treatment ads contain changes in image, headline text, or both, where these changes are designed to be more direct to an individual, emotional, and with an element of action. 
 
-We initially utilized Facebook ads platform to execute an A/B test, in which control and treatment image and headline will render to different users separately. In just a few days, we successfully collected more than thousand data points to analyze the click bait effects. Unfortunately, Facebook ads algorithms detected our experiments and considered it against their policy. Even though we tried to explain and provided personal identification to prove legit execution. In the end, we decided to run a survey via Survey Monkey to continue the same experiment with a different design approach. In the second stage of the experiment, we send out the survey displaying both control and treatment with different articles to avoid obvious click-bait tests. In both experiments, we are able to archive randomized and unbiased results by the platform setting. 
- 
+Experiment one is carried out on the social media platform Facebook, and compares control ads to treatment ads where both image and text are modified. We ran this experiment on two different underlying articles, one related to travel during the Covid-19 pandemic and the other related to the 2021 drought in the West of the United States. In an attempt to unpack the relative impacts of changing text, image, or both in our treatment groups, we launched a survey style experiment on the Survey Monkey platform. In this experiment, we created four different versions of each article tested: control, changing only text, changing only image, changing both. We created these four versions for two different articles, one related to travel during Covid-19 pandemic and the second related to video streaming services and the movie theater industry. Survey respondents were shown one version of each of these two articles, by random selection, and responded with the article they were most interested in reading. 
+
+Results from both experiments suggest there is an impact towards click through rates and selection preference when treatment is applied. In our social media Facebook experiment we see strong evidence of a significant treatment effect for clickbait treatment on both image and text. When exploring the nuanced differences in impact between text, image, or both in the survey design, we see a strong correlation between treatements and article selection however suffer some issues with sample size and statistical power when attempting to answer the questions surrounding treatment effects when compared to control groups. 
+
 
 # Facebook Ads Experiment
 
+Facebook is one of the most widely used social media platforms in the United States, and an increasingly large source of news consumption. For this experiment we used their advertising platform that allows both clearly defining groups of individuals that see your advertisements and conduct A/B testing to ensure that there is no overlap between individuals that see the control and treatment versions of an advertisement. With high usership, and the testing platform in place, we were confident we could get a large sample of individuals in the experiment that don't overlap.
+
+Data collected through the Facebook A/B testing platform includes those that have "seen" the article, meaning it showed up in their feed, those that click on the article, and various other engagement metrics such as comments and "likes". This allows us to identify individuals that would organically click on an article and have a reasonable measure of organic engagement. This should allow us to make the assumption that the effects applied by treatment are what is being measured in this comparison. However, its important to acknowledge that we have no insight to the Facebook algorithm and how their ad placement is truly selected. As a marketing platform, it is in their best interest to generate engagement quickly, and therefore there is likely some unknown confounding factors underlying the analyses. At the same time, we can assume this method is being done equally for the control and treatment advertisements, and that we should still be detecting a treatment effect despite the underlying algorithmic influences. 
+
 ## Experimental Design
 
-We chose Facebook advertising as our preferred platform for the experiment for several reasons. First, it is one of the most widely used social media platforms, which would allow flexibility in choosing the sample population and ensure that we have enough subjects in the experiment given our limited budget. Secondly, Facebook has an intuitive A/B testing feature that allows us to easily design ad campaigns with a control ad and a treatment ad that never get shown to the same Facebook user. 
+Two experiments were run on the Facebook platform using two different underlying articles. For each experiment, we use one existing news article and design two ads for it, each with a title headline and an image. The control advertisement has both a headline and image that are neutral, informative, and passive. They state facts without a call to action or question for the reader, and the image should not elicit strong emotional reactions. For the treatment advertisement, both the headline and image are "clickbait" - the headline contains a question that entices the reader to click on the article to find the answer, and the image portray more dynamic action that might draw attention. 
 
-We conducted two pilot experiments. In each experiment, we use one existing news article and design two ads for it, each with a headline and an image. For the ad that gets shown to the control group, both the headline and image are rather neutral. They state facts without a call to action or question for the reader, and the image should not elicit strong emotional reactions. For the ad shown to the treatment group, both the headline and image are "clickbait" - the headline contains a question that entices the reader to click on the article to find the answer, and the image portray more dynamic action that might draw attention. 
+Both control and treatment advertisements sit on top of an identical article, with identical news source, and therefore an identical subtitle (Figures 1 and 2). It is likely individuals have preferences on news sources and websites for their news consumption, and to eliminate any clicks that were related to preferences outside of the targeted treatment impacts. 
 
-Figure 1 shows the two ads used for the first pilot experiment. It uses the same NPR article about traveling overseas during the pandemic. The control group sees the headline "Traveling overseas - everything you need to know" with an image of a woman hiking in an idyllic nature scene. The treatment group sees the headline "Traveling overseas? It might not be worth it" with an image of travelers getting their temperatures checked in an airport security line. 
+The first experiment (Figure 1) uses the same NPR article about traveling overseas during the pandemic. The control group sees the headline "Traveling overseas - everything you need to know" with an image of a woman hiking in an idyllic nature scene. The treatment group sees the headline "Traveling overseas? It might not be worth it" with an image of travelers getting their temperatures checked in an airport security line. This article reached a total of 1103 individuals, with 360 seeing the control advertisement and 743 seeing the treatment advertisement.
 
 ```{r, echo=FALSE, fig.cap="Facebook Pilot Experiment 1", out.width = '50%', fig.align = "center", fig.pos = "H"}
 knitr::include_graphics("images/fb_travel.PNG")
 ```
 
-Figure 2 shows the two ads used for the second pilot experiment. It uses an New York Times article about the drought on the West Coast. The control group sees the headline "What to understand about the drought in the west" with an image of a red fiery sky. The treatment group sees the headline "Will you run out of water?" with a farmer walking on barren land in front of a few cows.
+The second experiment (Figure 2) uses a New York Times article about the drought on the West Coast. The control group sees the headline "What to understand about the drought in the west" with an image of a red fiery sky. The treatment group sees the headline "Will you run out of water?" with a farmer walking on barren land in front of a few cows. A total of 1,589 individuals were in this experiment, with 902 seeing the control article and 687 seeing the treatment article. 
 
 ```{r, echo=FALSE, fig.cap="Facebook Pilot Experiment 2", out.width = '50%', fig.align = "center", fig.pos = "H"}
 knitr::include_graphics("images/fb_drought.PNG")
 ```
 
-Each experiment got to run for about two days. Because the business page from which we created ads is brand new, and we did not have much, if any, previously advertising records on Facebook, our respective advertising accounts got disabled by Facebook. It was eye opening to see efforts being made by social media platforms to limit "fake news", even though it was a big roadblock for our experiment. However, we were able to extract data from these pilot studies and see some meaningful results.
+Each experiment ran for less than two days. The initial experimental design intended to run the experiments for a week each, however the Facebook platform shut down the business page developed to run these ads. Facebook has been implementing new policies to track "fake news", and the assumption is that the business page from which we created ads is brand new, and we did not have much, if any, previously advertising records on Facebook, our respective advertising accounts got disabled by Facebook. It was eye opening to see efforts being made by social media platforms to limit "fake news", even though it was a big roadblock for this experiment. However, these initial experiments still generated enough data to analyze and see meaningful results.
 
 
 ## Analysis
 
 ### Regression Model 
 
-The first regression analysis is linear regression model of the variable click on the variable treated - both indicator variables. Click indicates whether a Facebook user clicked through to the article after seeing the ad, and treated indicates if a user is in the treatment group. Table 1 shows the results. The first column shows the results from the first pilot study using the travel ads. The coefficient on treated is 0.122 with a 0.00 p-value, meaning that people in the treatment group are 12.2% more likely to click on the ad. The second column shows results from the second pilot study using the drought ads. The coefficient on treated is 0.020 with a p-value of 0.0691. People in the treatment group are 2.0% more likely to click on the ad, but it is only only statistically significant at the 10% level, compared to the 1% level in the first pilot study. 
+To assess the impact of the treatment, we ran a regression analysis. This is a linear regression model of the variable click on the variable treated - both indicator variables. Click indicates whether a Facebook user clicked through to the article after seeing the ad, and treated indicates if a user is in the treatment group. Table 1 shows the results. The first column shows the results from the first pilot study using the travel ads. The coefficient on treated is 0.122 with a 0.00 p-value, meaning that people in the treatment group are 12.2% more likely to click on the ad. The second column shows results from the second pilot study using the drought ads. The coefficient on treated is 0.020 with a p-value of 0.0691. People in the treatment group are 2.0% more likely to click on the ad, but it is only only statistically significant at the 10% level, compared to the 1% level in the first pilot study. 
 
 ```{r, message=FALSE, warning=FALSE, include = FALSE}
 library(data.table)
@@ -159,21 +165,22 @@ stargazer(model1 , model_gender,  model_age,
 )
 ```
 
+### Facebook Results 
 
+Overall, the results from the Facebook experiments suggest there is a significant treatment effect when both the image and text are treated with our "clickbait" treatment. This leads to the next question: do image or text have different impacts? To test the relative impacts of treating text, image, or both, we moved forward with additional experimentation. Due to issues with the Facebook platform, we transitioned to a survey design platform: Survey Monkey.
 
+# Survey(Survey Monkey) Experiment 
 
-\newpage
+The Survey Experiment was designed to test the relative impact of applying a treatment to just the text, just the image, or both for our advertisements and articles. As noted previously, due to issues with the Facebook platform we transitioned to a survey space that would allow us to complete the experiment: Survey Monkey.
 
+SurveyMonkey is a survey platform that allows for surveying users cheaply and efficiently with little danger of being locked out of the platform. The respondent is shown two image ads and asked to indicate which ad they would be more likely to click on. The survey targeted 400 respondents from across the United States using the broadest demographic available on SurveyMonkey. The full dataset contains 437 responses as SurveyMonkey provided these extra responses for free.
 
-# Survey(Monkey) Experiment 
-
-Because we spent so much time trying to do the Facebook experiment, we unfortunately had to redesign, deploy, and analyze a new experiment shortly before the deadline. We chose to utilize SurveyMonkey because their platform allows for surveying users cheaply and efficiently with little danger of being locked out of the platform. The respondent is shown two image ads and asked to indicate which ad they would be more likely to click on. The survey targeted 400 respondents from across the United States using the broadest demographic available on SurveyMonkey. The full dataset contains 437 responses as SurveyMonkey provided these extra responses for free.
+When working with SurveyMonkey there are a few key differences to note. On the Facebook platform, Facebook users were randomly shown a single article in their news feed and could choose to engage with the article or not. This very accurately mirrors a natural environment in which the participants are not aware they are being experimented on. This is an ideal situation for collecting true treatment effects. In the survey experiment this is not the case. Individuals are opting in to take surveys, and by default know their responses are being measured. Secondly, they are shown two images of potential articles and asked to identify their preferences. This is a forced choice. Individuals who may not be interested in either article, and if shown these in an environment like Facebook would click on neither, are requested to make a selection. This is likely to decrease the treatment effect and make it more difficult to identify, since individuals who otherwise would not participate are now required to log a response. 
 
 ## Experimental Design
 
 SurveyMonkey contains an A/B testing feature that allows for different text and images to be shown to respondents at random. We utilize this feature to show two different images to the respondent and create many sampling pairs. First, two ads with tame language and normal stock images were created by the team. For each ad, one version is created with extreme language in the title, another version with a shocking image, and a final version with both modified at once. This means that there are four versions of each article, and each version has a 25% chance of being displayed to the respondent according to SurveyMonkey's randomization procedure. 
 
-Here it is important to note a critical difference between the survey design and the Facebook Ads experiment. In the Facebook Ads experiment it was an organic ads placement where an individual had the option to click or ignore. We were able to capture the data for those who observed and chose not to click. In our survey design, the survey respondents are forced to give a selection on their preference. This is critical for several reasons: 1) it requires a binary choice which doesn't reflect a normal news engagement environment; 2) it places the preferences of those who are uninterested in both as equal to those who have a strong preference to one, adding noise from individuals that may not have clicked on either in a real world scenario; 3) as a survey the respondent doesn't actually get to engage in the content, where as in Facebook these were sitting over a real article with content - making the entire format of engagement very different.
 
 ```{r, echo=FALSE, fig.cap="Survey Design", out.width = '85%', fig.align = "center", fig.pos = "H"}
 knitr::include_graphics("images/Survey_Design.PNG")
@@ -251,7 +258,7 @@ for (g in c("C", "I", "T", "B")) {
 
 Respondents only ever see one version of each ad, which means that the potential outcomes of a respondent observing a treated ad and a control ad are never observed. To overcome this problem, a test of proportions is used as a basic check to determine whether the difference in ad content or topics has a significant effect on respondent choices. For each treatment type, we compare the number of times that ad version was selected by the respondents between both ads, and the p-values obtained are outlined below.
 
-#### Test of Proportion P-values:
+#### Test of Proportion P-values
 
 * Control group - those who saw control images of both articles: `r prop_test_p_values["C"]`
 * Text treatment group - those who saw text treatment of both articles: `r prop_test_p_values["T"]`
@@ -260,7 +267,7 @@ Respondents only ever see one version of each ad, which means that the potential
 
 For all groups we see no statistically significant differences in preference for article one versus article two, suggesting content and topic are not driving the outcome. 
 
-#### Test of Article Preference Through Regression Analysis:
+#### Test of Article Preference Through Regression Analysis
 
 Due to small sample sizes, we also ran a regression on a subset of the dataset containing all of the groups outlined above (e.g. those who saw the same type of both articles). Here we have the outcome variable set as preferring article one, and covariates for potential treatment types. We see, even when aggregated, there is no evidence of individuals in the survey preferentially selecting one article over the other when both articles have equal levels of treatment. Therefore, there is no evidence that article content is driving article selection, and we can assume that effects seen are driven by differences in treatment. 
 
@@ -290,7 +297,6 @@ stargazer(model_df3,
 
 To test the impact of treatment types at the individual level, we subset the data to remove all individuals that saw identical treatment levels (e.g. control article one and control article two; treatment both article one and two, etc). This left us with individuals that all have one control article, and see one type of treatment article, then make the choice between the two for their preference. 
 
-When running the regression, we then have a dummy variable that notes whether article one is control or treatment, and variables for the types of treatments that were seen (Image, Text, or Both). Our outcome variable is whether the treatment article was selected or not. 
 
 ```{r, echo=FALSE, fig.cap="Individual Treatement Design", out.width = '85%', fig.align = "center", fig.pos = "H"}
 knitr::include_graphics("images/individual_design.PNG")
@@ -298,7 +304,7 @@ knitr::include_graphics("images/individual_design.PNG")
 
 #### Regression Analyses and Results
 
-
+When running a regression, we create a dummy variable that notes whether article one is control or treatment, and retain variables for the types of treatments that were seen (Image, Text, or Both). Our outcome variable is whether the treatment article was selected or not. 
 
 ```{r survey regression, results = 'asis', message = FALSE, warning = FALSE, error = FALSE, echo = FALSE}
 #Duplicating dataframe df to build off of - filtering down to remove like:like pairs
@@ -434,18 +440,18 @@ stargazer(model_a2c_a1b, model_a2c_a1i, model_a2c_a1t, model_a2c_a1any,
 
 ```
 
+
 With Article Two as our control, we see no statistically significant coefficients with our regressions, however we also see from the summary table that we are suffering from a power issue related to our sample sizes. 
 
-At this time its best to use these group comparisons as evidence of a potential impact, seeing as our one comparison with power shows a signficiant coefficient, however further work to grow our sample size needs to be pursued before anything concrete can be concluded. 
+At this time its best to use these group comparisons as evidence of a potential impact, seeing as our one comparison with power shows a significant coefficient, however further work to grow our sample size needs to be pursued before anything concrete can be concluded. 
 
 # Conclusions 
 
-## Still needs editing
-In the Facebook ads platform experiment, the results suggest that with ‘clickbait’ images and text get significantly more clicks. In the survey results, we analyzed as “within subjects” and “between subjects”. In the Within subjects analysis, it suggests that both Image and text modifications have a positive ATE, and lead to the most preferences for ‘clickbait’ type articles. Image and Text modifications both have significant positive ATE’s, with Text being slightly more impactful than image.
+In the Facebook ads platform experiment, the results suggest that with ‘clickbait’ images and text get significantly more clicks. We see this significant impact for both articles that were tested. However, it is difficult to test from this limited experiment whether the treatment effect we see is driven by the change in the headline text, the image, or the combination of both. 
 
-In the Between subjects analysis, it suggests that when Article 1 is Control, there is a positive significant ATE from Image Treatment and a negative significant ATE from Both treatments combined. But when Article 2 is controlled, there is no significant ATE from Article 1 Treatments.
+When attempting to test these nuanced variations in treatment on the SurveyMonkey platform, we see a strong correlation for all treatment types and selecting a treatment article over control. It appears that the largest impact comes from having both image and text treatments, with only text treatment as next impactful, followed by only image. While these appear to have a strong correlation, when we parse the data to do a comparison between control groups we see these impacts disappear and in some cases reverse. However, once we parse our data to compare control and treatment groups, we see we have significant issues with sample size and low power analyses. Then only test with significant power corresponds to the positive treatment effect of an image treatment. These results suggest that there is evidence that supports these treatment types do impact click through rates, however further work to grow the sample size for the latter survey experiment is warranted. 
 
-Overall, we believe that sensational headlines and images did attract people’s attention and the image has a more dramatic effect than the text. Our experiment's result can only reveal partial evidence due to unexpected platform difficulties. To extend this experiment and analysis, we could navigate different platforms and various content types.
+Further work should focus on identifying a platform that can mimic the Facebook environment more closely, to avoid the forced choice and known testing space, and ultimately receive less leading results. In addition, expanding these studies to test for impact by article type and content would help contextualize if this treatment effect is only observed in some spaces and/or its magnitude changes for different types of content (e.g. politics, sports, etc.). In addition, as news sources continue to become more divisive and bi-partisan in the United States, running a larger experiment to test the contextual impact on the underlying news source would provide a more wholistic picture of indivudal choice when clicking on content. 
 
 
 
