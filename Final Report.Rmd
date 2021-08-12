@@ -121,6 +121,7 @@ stargazer(test_gender, test_gender2,
           header = FALSE
           )
 
+cat('\\newpage')
 ```
 
 We ran a similar regression of treated on age. Age was provided from facebook in buckets: 18-24, 25-34, 35-44, 45-54, 55-64 and 65+. The regression results effectively compare each age group to the 18-24 group. For both the travel ads experiment and the drought ads experiment, all coefficients on age groups are positive. None of the coefficients are statistically significant in the travel ads experiment, but they are all statistically significant at different levels for the drought experiment. Without other covariates or a deeper understanding of Facebook's algorithm, it is difficult for us to tell why these the drought experiment's randomization may not have been done properly.
@@ -163,6 +164,8 @@ stargazer(model1 , model_gender,  model_age,
           title = 'Facebook experiment - hetereogeneous treatment effects',
           header = FALSE
 )
+
+cat('\\newpage')
 ```
 
 ### Facebook Results 
@@ -207,7 +210,7 @@ knitr::include_graphics("images/survey_sample.png")
 
 ## Results 
 
-``` {r survey analysis, results = 'asis', message = FALSE, warning = FALSE, error = FALSE, echo = FALSE}
+``` {r survey analysis, results = 'asis', message = FALSE, warning = FALSE, error = FALSE, echo = FALSE, fig.pos = "H"}
 library(dplyr)
 library(ggplot2)
 library(tidyr)
@@ -271,7 +274,7 @@ For all groups we see no statistically significant differences in preference for
 
 Due to small sample sizes, we also ran a regression on a subset of the dataset containing all of the groups outlined above (e.g. those who saw the same type of both articles). Here we have the outcome variable set as preferring article one, and covariates for potential treatment types. We see, even when aggregated, there is no evidence of individuals in the survey preferentially selecting one article over the other when both articles have equal levels of treatment. Therefore, there is no evidence that article content is driving article selection, and we can assume that effects seen are driven by differences in treatment. 
 
-```{r article preference regression, results = 'asis', message = FALSE, warning = FALSE, error = FALSE, echo = FALSE}
+```{r article preference regression, results = 'asis', message = FALSE, warning = FALSE, error = FALSE, echo = FALSE, fig.pos = "H"}
 df_3 <- subset(df, (article1 == article2))
 
 df_3$treatment <- df_3$article1
@@ -290,6 +293,8 @@ stargazer(model_df3,
           column.labels = c('groups'),
           header = FALSE
           )
+
+cat('\\newpage')
 ```
 
 
@@ -306,7 +311,7 @@ knitr::include_graphics("images/individual_design.PNG")
 
 When running a regression, we create a dummy variable that notes whether article one is control or treatment, and retain variables for the types of treatments that were seen (Image, Text, or Both). Our outcome variable is whether the treatment article was selected or not. 
 
-```{r survey regression, results = 'asis', message = FALSE, warning = FALSE, error = FALSE, echo = FALSE}
+```{r survey regression, results = 'asis', message = FALSE, warning = FALSE, error = FALSE, echo = FALSE, fig.pos = "H"}
 #Duplicating dataframe df to build off of - filtering down to remove like:like pairs
 #Removes data without a Control
 
@@ -333,6 +338,8 @@ stargazer(model_df2,
           title = 'Survey Monkey experiment - regression of covariates',
           header = FALSE
           )
+
+cat('\\newpage')
 ```
 
 From these results we see that when Article One is the control, respondents that are shown an image with "Both" image and text are 67% more likely to select the treatment article over the control article. When the treatment variable is just image, the percentages decrease by 31%, suggesting that when looking at Article One control and Article Two with a treatment image they are 36% more likely to select the treatment article. If the treatment applied is "Text", the overall likelihood of selecting the treatment article is 45%. When article two is made the control, all of these percentages decrease by 4.3%.
@@ -360,7 +367,7 @@ knitr::include_graphics("images/article1_control_summary.PNG")
 
 When regressing for these variables where article one is always the control we see the following results:
 
-```{r article one control regression, results = 'asis', message = FALSE, warning = FALSE, error = FALSE, echo = FALSE}
+```{r article one control regression,  echo = FALSE, message = FALSE, warning = FALSE, results = 'asis', fig.pos = "H"}
 
 # article 1 is always control, article 2 is control + treatment
 
@@ -392,6 +399,8 @@ stargazer(model_a1c_a2b, model_a1c_a2i, model_a1c_a2t, model_a1c_a2any,
           title = 'Survey Monkey experiment - Group Comparisons',
           header = F,
           column.labels = c("Both", "Image", "Text", "Any Treatment"))
+
+cat('\\newpage')
 ```
 
 With Article One as our control, we can see that there appears to have a significant effect when looking at the Image treatment of .290, and a negative effect when looking at comparisons with "Both" image and text treatment of -.195. However, when looking at our summary statistics and power of these tests we can note that by parsing our data in this manner we are now working with small samples sizes and low power. Interestingly, our one variable that shows a positive significant positive correlation in our regression, the articles with image treatment, is the only group comparison that has a high power associated. 
@@ -408,7 +417,7 @@ knitr::include_graphics("images/article2_control_summary.PNG")
 
 When regressing for these variables where article two is always the control we see the following results:
 
-```{r article two control regression, results = 'asis', message = FALSE, warning = FALSE, error = FALSE, echo = FALSE}
+```{r article two control regression,  echo = FALSE, message = FALSE, warning = FALSE, results = 'asis', fig.pos = "H"}
 
 # article 2 is always control, article 1 is control + treatment
 
@@ -437,6 +446,8 @@ stargazer(model_a2c_a1b, model_a2c_a1i, model_a2c_a1t, model_a2c_a1any,
           title = 'Survey Monkey experiment - Group Comparisons',
           header = F,
           column.labels = c("Both", "Image", "Text", "Any Treatment"))
+
+cat('\\newpage')
 
 ```
 
